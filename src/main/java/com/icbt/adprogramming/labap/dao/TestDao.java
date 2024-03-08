@@ -56,32 +56,33 @@ public class TestDao {
         return testdetail;
     }
 
-    public Appointment getAppointmentById(String id) {
-        Appointment appointment = null;
+    public TestDetails getTestById(String testId) {
+        TestDetails testdetails = null;
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "SELECT * FROM appointments WHERE id = ?";
+            String sql = "SELECT * FROM testdetails WHERE testid = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, id);
+            statement.setString(1, testId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String name = resultSet.getString("name");
                 String testName = resultSet.getString("testname");
-                String date = resultSet.getString("date");
-                String time = resultSet.getString("time");
-                appointment = new Appointment(id, name, testName, date, time);
+                String fee = resultSet.getString("fee");
+                
+                
+                testdetails = new TestDetails(testId, testName,fee);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return appointment;
+        return testdetails;
     }
 
     public void updateTestDetails(TestDetails testdetails) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "UPDATE testdetails SET testname=?, fee=? WHERE id=?";
+            String sql = "UPDATE testdetails SET testname=?, fee=? WHERE testid=?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, testdetails.getTestName());
             statement.setString(2, testdetails.getFee());
+            statement.setString(3, testdetails.getTestId());
             
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -99,10 +100,4 @@ public class TestDao {
             e.printStackTrace();
         }
     }
-    
-   
-    
-    
-    
-    
 }

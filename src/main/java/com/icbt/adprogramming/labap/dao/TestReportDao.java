@@ -61,40 +61,40 @@ public class TestReportDao {
         return testReports;
     }
 
-    public TestDetails getTestById(String testId) {
-        TestDetails testdetails = null;
+    public TestReport getTestReportById(String patientId) {
+        TestReport testReport = null;
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "SELECT * FROM testdetails WHERE testid = ?";
+            String sql = "SELECT * FROM testreport WHERE patientid = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, testId);
+            statement.setString(1, patientId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                String patientName = resultSet.getString("patientname");
                 String testName = resultSet.getString("testname");
-                String fee = resultSet.getString("fee");
-                
-                
-                testdetails = new TestDetails(testId, testName,fee);
+                String status = resultSet.getString("status");
+                String reportLink = resultSet.getString("reportlink");
+                testReport = new TestReport(patientId, patientName, testName, status, reportLink);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return testdetails;
+        return testReport;
     }
 
-    public void updateTestDetails(TestDetails testdetails) {
+    public void updateTestReport(TestReport testReport) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "UPDATE testdetails SET testname=?, fee=? WHERE testid=?";
+            String sql = "UPDATE testreport SET patientname=?, testname=?, status=?, reportlink=? WHERE patientid=?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, testdetails.getTestName());
-            statement.setString(2, testdetails.getFee());
-            statement.setString(3, testdetails.getTestId());
-            
+            statement.setString(1, testReport.getPatientName());
+            statement.setString(2, testReport.getTestName());
+            statement.setString(3, testReport.getStatus());
+            statement.setString(4, testReport.getReportLink());
+            statement.setString(5, testReport.getPatientId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     public void deleteAppointment(String id) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             String sql = "DELETE FROM appointments WHERE id=?";

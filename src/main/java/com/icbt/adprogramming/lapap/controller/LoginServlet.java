@@ -33,10 +33,13 @@ public class LoginServlet extends HttpServlet {
         User user = userDAO.getUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
             HttpSession session = request.getSession(true);
+            session.setAttribute("userId", user.getId()); // Set the userId attribute
             session.setAttribute("email", email);
             response.sendRedirect("user_dashboard.jsp");
         } else {
             response.sendRedirect("login.jsp?error=1");
         }
     }
+    
+    
 }

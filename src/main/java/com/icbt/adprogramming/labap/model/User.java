@@ -7,6 +7,8 @@ public class User {
     private String address;
     private String password;
 	private int id;
+	private String patientId;
+	
 	public String getName() {
 		return name;
 	}
@@ -37,23 +39,45 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void sgetUserByEmail(String email) {
+		this.email = email;
+	}
 
 	
-	public int getId() {
+	public String getId() {
       
-		return id;
+		return patientId;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 	
+	 public User(String patientId,String name, String email, String contact, String address, String password) {
+	        this.name = name;
+	        this.email = email;
+	        this.contact = contact;
+	        this.address = address;
+	        this.password = password;
+	        this.patientId = patientId;
+	        
+	    }
 	 public User(String name, String email, String contact, String address, String password) {
 	        this.name = name;
 	        this.email = email;
 	        this.contact = contact;
 	        this.address = address;
 	        this.password = password;
+	        
+	        
 	    }
+	 
     // Constructor, getters, setters
+	public String getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
 }

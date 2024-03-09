@@ -57,11 +57,12 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                String name = resultSet.getString("name");
+            	String patientid = resultSet.getString("id");
+            	String name = resultSet.getString("name");
                 String contact = resultSet.getString("contact");
                 String address = resultSet.getString("address");
                 String password = resultSet.getString("password");
-                return new User(name, email, contact, address, password);
+                return new User(patientid,name, email, contact, address, password);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,4 +80,6 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
     }
+    
+    
 }

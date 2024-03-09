@@ -1,5 +1,7 @@
 package com.icbt.adprogramming.labap.model;
 
+import java.util.List;
+
 public class TestReport {
 
 	
@@ -66,5 +68,10 @@ public class TestReport {
 	    public void setReportLink(String reportLink) {
 	        this.reportLink = reportLink;
 	    }
+
+		public void add(List<TestReport> testreport) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 

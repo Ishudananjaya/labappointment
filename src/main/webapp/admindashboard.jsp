@@ -65,6 +65,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="viewallreport.jsp">View All Reports</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="addtestdetails.jsp">Add Test Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="viewtestdetails.jsp">View Avaliable Tests</a>
+                    </li>
                 </ul>
             </div>
         </div>

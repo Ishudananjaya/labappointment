@@ -39,7 +39,7 @@ public class VipLoginServlet extends HttpServlet {
                 session.setAttribute("user", user);
 
                 if (user.getUserCategory().equals("Manager")) {
-                    response.sendRedirect("admindashboard.jsp");
+                    response.sendRedirect("managerdashboard.jsp");
                 } else if (user.getUserCategory().equals("Admin")) {
                     response.sendRedirect("admindashboard.jsp");
                 } else {

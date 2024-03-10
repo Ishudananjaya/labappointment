@@ -19,6 +19,7 @@ public class AppointmentController extends HttpServlet {
 	/**
 	 * 
 	 */
+	 private AppointmentDAO appointmentDAO;
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,6 +42,18 @@ public class AppointmentController extends HttpServlet {
         
     }
 	
-	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    try {
+	        int appointmentCount = appointmentDAO.getAppointmentCount();
+	        request.setAttribute("appointmentCount", appointmentCount);
+	        request.getRequestDispatcher("managerdashboard.jsp").forward(request, response);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // Add error message attribute for display in JSP
+	        request.setAttribute("errorMessage", "Error retrieving appointment count");
+	        request.getRequestDispatcher("error.jsp").forward(request, response);
+	    }
+	}
     
 }

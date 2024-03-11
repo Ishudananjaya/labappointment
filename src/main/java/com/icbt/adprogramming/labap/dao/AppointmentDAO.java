@@ -107,7 +107,7 @@ public class AppointmentDAO {
     public int getAppointmentCount() {
         int count = 0;
         try(Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "SELECT COUNT(*) AS count FROM appointment";
+            String sql = "SELECT COUNT(*) AS count FROM appointments";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {

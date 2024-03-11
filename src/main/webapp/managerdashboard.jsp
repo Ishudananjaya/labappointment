@@ -56,54 +56,52 @@
   tr:hover {
     background-color: #f9f9f9;
   }
+  .large-red {
+    font-size: 24px;
+    color: red;
+  }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-  <a href="#" onclick="showPage('dashboard')">Dashboard</a>
-  <a href="#" onclick="showPage('employees')">Employees</a>
-  <a href="#" onclick="showPage('reports')">Reports</a>
+  <a href="viewallappointments.jsp" onclick="showPage('dashboard')">Dashboard</a>
+  <a href="#" onclick="showPage('employees')">Employees Registration</a>
+  <a href="viewallreport.jsp" onclick="showPage('reports')">Reports</a>
 </div>
+
+
 
 <div class="content" id="content">
 
   <!-- Content will be loaded dynamically here -->
   <h2>Welcome to Manager Dashboard</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Test Name</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% 
-          AppointmentDAO appointmentDAO = new AppointmentDAO();
-          List<Appointment> appointments = appointmentDAO.getAllAppointments();
-          for(Appointment appointment : appointments) {
-      %>
-      <tr>
-        <td><%= appointment.getId() %></td>
-        <td><%= appointment.getName() %></td>
-        <td><%= appointment.getTestName() %></td>
-        <td><%= appointment.getDate() %></td>
-        <td><%= appointment.getTime() %></td>
-        <td>
-          <a href="editappointment.jsp?id=<%= appointment.getId() %>" class="btn btn-primary btn-sm">Edit</a>
-        </td>
-        <td>
-          <a href="deleteappointment.jsp?id=<%= appointment.getId() %>" class="btn btn-danger btn-sm">Delete</a>
-        </td>
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
+  
+       
+      <%
+      // Get appointment ID from request parameter
+      String id = request.getParameter("id");
+      
+      // Retrieve appointment details from AppointmentDAO
+      AppointmentDAO appointmentDAO = new AppointmentDAO();
+      int appointmentCount = appointmentDAO.getAppointmentCount();
+            
+      
+      
+            %>
+      
+    <!-- Content will be loaded dynamically here -->
+ 
+  <p>On this dashboard, you can:</p>
+  <ul>
+    <li>Register admin users.</li>
+    <li>View reports.</li>
+    <li>See the total number of appointments.</li>
+  </ul>
+    
+      <p>Total Appointments: <span class="large-red"><%= appointmentCount %></span></p>
+      
+  
   
 </div>
 

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coordinator Dashboard</title>
+    <title>Admin Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -47,7 +47,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Coordinator Dashboard</a>
+            <a class="navbar-brand" href="#">Administrator Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -80,7 +80,7 @@
     <!-- Dashboard Content -->
     <div class="container mt-4">
         <div class="jumbotron">
-            <h1 class="display-4">Welcome, Coordinator!</h1>
+            <h1 class="display-4">Welcome, Administrator!</h1>
             <hr class="my-4">
             <p class="lead">You can manage appointments and test reports from this dashboard.</p>
         </div>
